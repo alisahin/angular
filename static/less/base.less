@@ -1,0 +1,121 @@
+@import url("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+@primary-color: 	#2c3e50;
+@secondary-color: 	#1abc9c;
+@tertiary-color: 	#ecf0f1;
+
+body {
+	background: @tertiary-color;
+}
+
+h1 {
+	margin: 0; padding: 0;
+	text-align: center;
+
+	span {
+		margin-left: 10px;
+	}
+}
+
+p {
+	text-align: center;
+}
+
+.navbar {
+	.border-top-radius(0);
+	.box-shadow(0);
+	border: none;
+	background: @primary-color;
+
+	button {
+		display: none;
+	}
+}
+
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav > li > a {
+	color: white;
+
+	&:hover {
+		color: white;
+	}
+}
+
+.navbar-inverse .navbar-brand:hover {
+		color: @secondary-color;
+}
+
+.nav {
+	padding-left: 15px;
+	padding-right: 15px;
+
+	> li {
+		.transition(all); 
+		.transition-duration(1s);
+
+		&:hover {
+			background: @secondary-color;
+		}
+	}
+}
+
+/* Content section */
+article#content {
+	position: relative;
+	left: 0;
+	clear:left;
+
+	> section {
+		display: none;
+
+		&.active {
+			display:block;
+		}
+	}
+}
+
+.panel {
+
+	table + table {
+		margin-top: 25px;
+	}
+	
+	table {
+		font-family: "arial";
+		width: 100%;
+
+		th {
+			color: white;
+			background: @secondary-color;
+		}
+
+		th, td {
+			.transition(all); 
+			.transition-duration(1s);
+			height: 45px;
+			text-align: center;
+			vertical-align: middle !important;
+		}
+	}
+}
+
+.table-hover {
+	  > tbody {
+	    > tr:hover {
+	      > td,
+	      > th {
+	      	color: white;
+	        background-color: rgba(52, 73, 94,.8);
+	      }
+	    }
+	  }
+	}
+
+footer {
+	// background: @primary-color;
+}
+
+
+
+// Mixins
+
