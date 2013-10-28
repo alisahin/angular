@@ -3,9 +3,10 @@
 	PoolID: 19219
 */
 
-var app = angular.module('app', []);
+// Changed namespace to uppercase
+var APP = angular.module('APP', []);
 
-app.config(function ($routeProvider) {
+APP.config(function ($routeProvider) {
 	$routeProvider
 		.when('/schedule',
 		{
@@ -32,32 +33,51 @@ app.config(function ($routeProvider) {
 		})
 })
 
-app.controller('scheduleCtrl', function AppCtrl($scope, $http) {
-  $http.get('https://api.leaguevine.com/v1/game_scores/?tournament_id=19389').success(function(data) {
-    $scope.schedules = data.objects;
-    console.log(data.objects);
+APP.factory('services', function ($http) {
+	return {
+		getSchedule: function (callback) {
+			$http.get('https://api.leaguevine.com/v1/game_scores/?tournament_id=19389').success(callback);
+		},
+		getPool: function (callback) {
+			$http.get('https://api.leaguevine.com/v1/pools/?pool_ids=%5B19219%5D&tournament_id=19389&fields=%5Bname%2C%20standings%5D').success(callback);
+		},
+		getGame: function (callback) {
+			$http.get('https://api.leaguevine.com/v1/games/?tournament_id=19389&pool_id=19219&fields=%5Bpool%2C%20team_1%2C%20team_1_score%2C%20team_2%2C%20team_2_score%20%5D').success(callback);
+		},
+		setGameScore: function (callback) {
+			/**
+			 * Check https://github.com/Tamp/FED2/blob/master/APP/static/js/services.js to create your post request
+			 */
+		}
+	}
+})
+
+
+/**
+ * Use the factories in your controllers
+ */
+APP.controller('scheduleCtrl', function ($scope, $http, services) {
+  services.getSchedule(function (data) {
+  	$scope.schedules = data.objects;
   })
 })
 
-app.controller('poolCtrl', function AppCtrl($scope, $http) {
+APP.controller('poolCtrl', function ($scope, $http) {
   $http.get('https://api.leaguevine.com/v1/pools/?pool_ids=%5B19219%5D&tournament_id=19389&fields=%5Bname%2C%20standings%5D').success(function(data) {
     $scope.pools = data.objects;
     console.log(data.objects);
   })
 })
 
-app.controller('gameCtrl', function AppCtrl($scope, $http) {
+APP.controller('gameCtrl', function ($scope, $http) {
   $http.get('https://api.leaguevine.com/v1/games/?tournament_id=19389&pool_id=19219&fields=%5Bpool%2C%20team_1%2C%20team_1_score%2C%20team_2%2C%20team_2_score%20%5D').success(function(data) {
     $scope.games = data.objects;
     console.log(data.objects);
   })
 })
 
-app.controller('gameUpdateCtrl', function AppCtrl($scope, $http) {
+APP.controller('gameUpdateCtrl', function ($scope, $http) {
   $http.post('/someUrl', data).success(successCallback);
     $scope.games = data.objects;
     console.log(data.objects);
 })
-
-
-
