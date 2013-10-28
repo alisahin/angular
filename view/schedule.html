@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">
+		<h1>Schedule<span class="glyphicon glyphicon-calendar"></span></h1>
+		<p>Pool A - Schedule</p>
+	</div>
+
+	<table class="table table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Date / time</th>
+				<th>Team</th>
+				<th>Result</th>
+				<th>Team</th>
+			</tr>
+		</thead>
+		<tbody ng-repeat="schedule in schedules">
+			<tr>
+				<td>{{schedule.time}}</td>
+				<td>{{schedule.team_1.name}}</td>
+				<td>{{schedule.team_1_score}} - {{schedule.team_2_score}}</td>
+				<td>{{schedule.team_2.name}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
