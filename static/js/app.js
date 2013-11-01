@@ -44,7 +44,7 @@ APP.factory('services', function ($http) {
 		getGame: function (callback) {
 			$http.get('https://api.leaguevine.com/v1/games/?tournament_id=19389&pool_id=19219&fields=%5Bpool%2C%20id%2C%20team_1%2C%20team_1_score%2C%20team_2%2C%20team_2_score%5D').success(callback);
 		},
-		getById: function (callback) {
+		getById: function (id, callback) {
 			$http.get('https://api.leaguevine.com/v1/games/?tournament_id=19389&pool_id=19219&fields=%5Bpool%2C%20id%2C%20team_1%2C%20team_1_score%2C%20team_2%2C%20team_2_score%5D').success(callback);
 		},
 		setGameScore: function (data, callback) {
