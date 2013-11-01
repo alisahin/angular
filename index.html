@@ -1,60 +1,59 @@
 <!DOCTYPE html>
-<html>
-  <head>
-  	 <meta charset="utf-8">
-    <title>Skeleton App &middot; Bootstrap 3</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="static/css/bootstrap.css" rel="stylesheet" media="screen">
-    <!-- <link rel="stylesheet" href="static/css/style.css"> -->
+<html ng-app="APP">
+	<head>
+		<meta charset="utf-8">
+		<title>Skeleton App &middot; Bootstrap 3</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="static/css/bootstrap.css" rel="stylesheet" media="screen">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="../../assets/js/html5shiv.js"></script>
-      <script src="../../assets/js/respond.min.js"></script>
-    <![endif]-->
-  </head>
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="../../assets/js/html5shiv.js"></script>
+		<script src="../../assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
   <body>
 
-    <div class="container">
+	<div class="container">
 		<nav class="navbar navbar-inverse" role="navigation">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex8-collapse">
-		    <span class="sr-only">Toggle navigation</span>
-		    <span class="icon-bar"></span>
-		    <span class="icon-bar"></span>
-		    <span class="icon-bar"></span>
-		  </button>
-		  <a class="navbar-brand" href="#">Skeleton</a>
-		</div>
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex8-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Skeleton</a>
+			</div>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="">
-		  <ul class="nav navbar-nav">
-		    <li><a href="/#/pool">Pool</a></li>
-		    <li><a href="/#/game">Game</a></li>
-		    <li><a href="/#/schedule">Schedule</a></li>
-		  </ul>
-		 </div><!-- /.navbar-collapse -->
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="">
+				<ul class="nav navbar-nav">
+					<li><a href="#/pool">Pool</a></li>
+					<li><a href="#/game">Game</a></li>
+					<li><a href="#/">Schedule</a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
 		</nav>
 
-		<section ng-app="app">
+		<section>
 			<!-- View placeholder -->
 			<ng-view></ng-view>		
 		</section>
 
-	    <footer>
-	    	<div class="row">
-	  			<div class="col-sm-12">copyleft 2013 &middot; all wrongs reversed &middot; Ali Sahin</div>
-	  		</div>
-	    </footer>
-    </div><!-- container -->
+		<footer>
+			<div class="row">
+				<div class="col-sm-12">copyleft 2013 &middot; all wrongs reversed &middot; Ali Sahin</div>
+			</div>
+		</footer>
+	</div><!-- container -->
 
-    <!-- Libs -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-    
-    <!-- Application -->
-    <script src="static/js/app.js"></script>
+	<!-- Libs -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+	
+	<!-- Application -->
+	<script src="static/js/app.js"></script>
   </body>
 </html>

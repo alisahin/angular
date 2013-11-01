@@ -3,12 +3,12 @@
 	PoolID: 19219
 */
 
-// Changed namespace to uppercase
+// namespace
 var APP = angular.module('APP', []);
 
 APP.config(function ($routeProvider) {
 	$routeProvider
-		.when('/schedule',
+		.when('/',
 		{
 			templateUrl: "view/schedule.html",
 			controller: "scheduleCtrl"
@@ -23,10 +23,10 @@ APP.config(function ($routeProvider) {
 			templateUrl: "view/game.html",
 			controller: "gameCtrl"
 		})
-		.when('/gameUpdate',
+		.when('/game/:id',
 		{
-			templateUrl: "view/gameUpdate.html",
-			controller: "gameUpdateCtrl"
+			templateUrl: "view/set_score.html",
+			controller: "setScoreCtrl"
 		})
 		.otherwise({
 			redirectTo: '/'
@@ -42,13 +42,17 @@ APP.factory('services', function ($http) {
 			$http.get('https://api.leaguevine.com/v1/pools/?pool_ids=%5B19219%5D&tournament_id=19389&fields=%5Bname%2C%20standings%5D').success(callback);
 		},
 		getGame: function (callback) {
-			$http.get('https://api.leaguevine.com/v1/games/?tournament_id=19389&pool_id=19219&fields=%5Bpool%2C%20team_1%2C%20team_1_score%2C%20team_2%2C%20team_2_score%20%5D').success(callback);
+			$http.get('https://api.leaguevine.com/v1/games/?tournament_id=19389&pool_id=19219&fields=%5Bpool%2C%20id%2C%20team_1%2C%20team_1_score%2C%20team_2%2C%20team_2_score%5D').success(callback);
 		},
-		setGameScore: function (callback) {
-			/**
-			 * Check https://github.com/Tamp/FED2/blob/master/APP/static/js/services.js to create your post request
-			 */
-		}
+		getById: function (callback) {
+			$http.get('https://api.leaguevine.com/v1/games/?tournament_id=19389&pool_id=19219&fields=%5Bpool%2C%20id%2C%20team_1%2C%20team_1_score%2C%20team_2%2C%20team_2_score%5D').success(callback);
+		},
+		setGameScore: function (data, callback) {
+			var accessToken = '82996312dc';
+			$http.post('https://api.leaguevine.com/v1/game_scores/?access_token=' + accessToken + '?callback?', data, {
+				headers: {'Authorization': 'bearer ' + accessToken}
+			}).success(callback);
+		}	
 	}
 })
 
@@ -57,27 +61,37 @@ APP.factory('services', function ($http) {
  * Use the factories in your controllers
  */
 APP.controller('scheduleCtrl', function ($scope, $http, services) {
-  services.getSchedule(function (data) {
-  	$scope.schedules = data.objects;
-  })
+	services.getSchedule(function (data) {
+		$scope.schedules = data.objects;
+		console.log(data.objects);
+	})
 })
 
-APP.controller('poolCtrl', function ($scope, $http) {
-  $http.get('https://api.leaguevine.com/v1/pools/?pool_ids=%5B19219%5D&tournament_id=19389&fields=%5Bname%2C%20standings%5D').success(function(data) {
-    $scope.pools = data.objects;
-    console.log(data.objects);
-  })
+APP.controller('poolCtrl', function ($scope, $http, services) {
+	services.getPool(function (data) {
+		$scope.pools = data.objects;
+		console.log(data.objects);
+	})
 })
 
-APP.controller('gameCtrl', function ($scope, $http) {
-  $http.get('https://api.leaguevine.com/v1/games/?tournament_id=19389&pool_id=19219&fields=%5Bpool%2C%20team_1%2C%20team_1_score%2C%20team_2%2C%20team_2_score%20%5D').success(function(data) {
-    $scope.games = data.objects;
-    console.log(data.objects);
-  })
+APP.controller('gameCtrl', function ($scope, $http, services) {
+	services.getGame(function (data) {
+		$scope.games = data.objects;
+		console.log(data.objects);
+	})
 })
 
-APP.controller('gameUpdateCtrl', function ($scope, $http) {
-  $http.post('/someUrl', data).success(successCallback);
-    $scope.games = data.objects;
-    console.log(data.objects);
+APP.controller('setScoreCtrl', function ($scope, $http, $routeParams, services) {
+	console.log($routeParams.id);
+	services.getById($routeParams.id, function (data) {
+		$scope.data = data;
+	}) 
+
+	$scope.submit = function () {
+		console.log(this.data);
+		services.setGameScore(this.data, function () {
+			// $scope.flash = "success";
+			console.log("Gelukt!");
+		})
+	}
 })

@@ -16,7 +16,7 @@
 		</thead>
 		<tbody ng-repeat="schedule in schedules">
 			<tr>
-				<td>{{schedule.time}}</td>
+				<td>{{schedule.time | date:'dd MMM yyyy H:mm'}}</td>
 				<td>{{schedule.team_1.name}}</td>
 				<td>{{schedule.team_1_score}} - {{schedule.team_2_score}}</td>
 				<td>{{schedule.team_2.name}}</td>
