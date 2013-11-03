@@ -1,8 +1,30 @@
+/*
+* Frontend development 2
+* Copyleft 2013, Ali Sahin
+* URL
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 6/20/2012
+*/
+
+/* Table of Content
+==================================================
+	#Site Styles
+	#Loader
+	#Forms
+
+
+/* #Site Styles
+================================================== */
 @import url("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
 @primary-color: 	#2c3e50;
 @secondary-color: 	#1abc9c;
 @tertiary-color: 	#ecf0f1;
+@clouds: 			#ecf0f1;
+@silver: 			#bdc3c7;
+@turqoise: 			#1abc9c;
+@river: 			#3498db;
 
 body {
 	background: @tertiary-color;
@@ -46,8 +68,7 @@ p {
 }
 
 .nav {
-	padding-left: 15px;
-	padding-right: 15px;
+	padding:0 15px;
 
 	> li {
 		.transition(all); 
@@ -55,21 +76,6 @@ p {
 
 		&:hover {
 			background: @secondary-color;
-		}
-	}
-}
-
-/* Content section */
-article#content {
-	position: relative;
-	left: 0;
-	clear:left;
-
-	> section {
-		display: none;
-
-		&.active {
-			display:block;
 		}
 	}
 }
@@ -118,5 +124,88 @@ footer {
 
 
 
-// Mixins
+/* #loader
+================================================== */
+.pace {
+-webkit-pointer-events: none;
+pointer-events: none;
+-webkit-user-select: none;
+-moz-user-select: none;
+user-select: none;
+
+  	.pace-activity {
+		display: block;
+		position: fixed;
+		z-index: 2000;
+		top: 0;
+		right: 0;
+		width: 300px;
+		height: 300px;
+		background: @river;
+		-webkit-transition: -webkit-transform 0.3s;
+		transition: transform 0.3s;
+		-webkit-transform: translateX(100%) translateY(-100%) rotate(45deg);
+		transform: translateX(100%) translateY(-100%) rotate(45deg);
+		pointer-events: none;
+	}
+}
+
+.pace.pace-active .pace-activity {
+  -webkit-transform: translateX(50%) translateY(-50%) rotate(45deg);
+  transform: translateX(50%) translateY(-50%) rotate(45deg);
+}
+
+.pace .pace-activity::before,
+.pace .pace-activity::after {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    display: block;
+    border: 5px solid @clouds;
+    border-radius: 50%;
+    content: '';
+}
+
+.pace .pace-activity::before {
+    margin-left: -40px;
+    width: 80px;
+    height: 80px;
+    border-right-color: rgba(0, 0, 0, .2);
+    border-left-color: rgba(0, 0, 0, .2);
+    -webkit-animation: pace-rotation 3s linear infinite;
+    animation: pace-rotation 3s linear infinite;
+}
+
+.pace .pace-activity::after {
+    bottom: 50px;
+    margin-left: -20px;
+    width: 40px;
+    height: 40px;
+    border-top-color: rgba(0, 0, 0, .2);
+    border-bottom-color: rgba(0, 0, 0, .2);
+    -webkit-animation: pace-rotation 1s linear infinite;
+    animation: pace-rotation 1s linear infinite;
+}
+
+@-webkit-keyframes pace-rotation {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(359deg); }
+}
+@keyframes pace-rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(359deg); }
+}
+
+/* #Forms
+================================================== */
+.form-inline {
+	padding: 20px;
+	.form-group {
+		width: 20%;
+	}
+	.checkbox {
+		width: 100%;
+		padding: 10px 0;
+	}
+}
 
