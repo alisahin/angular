@@ -1,3 +1,8 @@
+/*
+	TournamentID: 19389
+	PoolID: 19219
+*/
+
 APP.factory('services', function ($http) {
 	return {
 		getSchedule: function (callback) {
@@ -13,7 +18,7 @@ APP.factory('services', function ($http) {
 			$http.get('https://api.leaguevine.com/v1/games/' + id + '/?{}').success(callback);
 		},
 		setGameScore: function (game, callback) {
-			var accessToken = '82996312dc';
+			var accessToken = '7c1a981550';
 			$http.post('https://api.leaguevine.com/v1/game_scores/?access_token=' + accessToken + '?callback?', game, {
 				headers: {'Authorization': 'bearer ' + accessToken}
 			}).success(callback);

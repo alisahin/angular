@@ -9,15 +9,15 @@
 	<form ng-submit="submit()" class="form-inline" role="form">
 		<div class="form-group">
 			<label class="" for="team_1">{{game.team_1.name}}</label>
-			<input ng-model="game.team_1_score" type="number" class="form-control" id="team_1" placeholder="">
+			<input ng-model="game.team_1_score" type="number" class="form-control" id="team_1">
 		</div>
 		<div class="form-group">
 			<label class="" for="team_2">{{game.team_2.name}}</label>
-			<input ng-model="game.team_2_score" type="number" class="form-control" id="team_2" placeholder="">
+			<input ng-model="game.team_2_score" type="number" class="form-control" id="team_2">
 		</div>
 		<div class="checkbox">
 			<label>
-				<input type="checkbox" ng-model="game.is_final" value="true"> Is final?
+				<input type="checkbox" ng-model="game.is_final"> Is final?
 			</label>
 		</div>
 		<input type="submit" class="btn btn-primary" value="Update"></input>

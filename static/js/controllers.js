@@ -32,6 +32,8 @@ APP.controller('setScoreCtrl', function ($scope, $http, $routeParams, services) 
 
 		services.setGameScore(this.game, function () {
 			console.log("Posted!");
+			
+			// show feedback message sent
 			document.getElementById('alert').style.display = "block";
 		})
 	};

@@ -1,8 +1,3 @@
-/*
-	TournamentID: 19389
-	PoolID: 19219
-*/
-
 // Namespace
 var APP = angular.module('APP', []);
 
