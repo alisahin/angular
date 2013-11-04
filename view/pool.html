@@ -16,7 +16,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="standing in pool.standings | orderBy: 'standing.wins'">
+			<tr ng-repeat="standing in pool.standings | orderBy:['-points_scored']">
 				<td>{{standing.team.name}}</td>
 				<td>{{standing.wins}}</td>
 				<td>{{standing.losses}}</td>

@@ -1,8 +1,9 @@
 <div class="panel panel-default">
+
 	<!-- Default panel contents -->
 	<div class="panel-heading">
 		<h1>Set Gamescore<span class="glyphicon glyphicon-edit"></span></h1>
-		<p>{{game.team_1.name}} vs {{game.team_2.name}}</p>
+		<p>{{game.team_1.name}} <strong>vs</strong> {{game.team_2.name}}</p>
 	</div>
 
 	<form ng-submit="submit()" class="form-inline" role="form">
@@ -16,9 +17,10 @@
 		</div>
 		<div class="checkbox">
 			<label>
-			<input ng-model="game.is_final" type="checkbox"> Is final?
+				<input type="checkbox" ng-model="game.is_final" value="true"> Is final?
 			</label>
 		</div>
 		<input type="submit" class="btn btn-primary" value="Update"></input>
+		<div id="alert" class="alert alert-success">Post Succesful, <a href="#/game">return to games</a></div>
 	</form>
 </div>
